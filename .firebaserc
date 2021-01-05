@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "heyandes2021": {
+      "hosting": {
+        "heyAndes": [
+          "heyandes2021"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "heyandes2021"
+  }
+}
