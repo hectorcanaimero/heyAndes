@@ -15,4 +15,5 @@ export interface Empresas {
   status?:       string;
   dayTo?:        Date;
   dayFrom?:      Date;
+  slug?:         String;
 }
