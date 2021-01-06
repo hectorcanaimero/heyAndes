@@ -1,1 +1,47 @@
-<p>detail works!</p>
+<div class="container">
+  <h3 class="mb-4">
+    Empresas > {{ title }}
+    <span class="float-right">
+      <mdb-icon fas icon="home" (click)="onBack()"></mdb-icon>
+    </span>
+  </h3>
+  <div class="row justify-content-center">
+    <div class="col-md-12">
+      <table mdbTable small="true" striped="true" hover="true" *ngIf="(items | async) as data" >
+        <thead class="black white-text text-center">
+          <tr>
+            <th scope="col" [mdbTableSort]="data" sortBy="name">
+              Nombre Cliente
+              <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+            </th>
+            <th scope="col" [mdbTableSort]="data" sortBy="persons">
+              Personas
+              <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+            </th>
+            <th scope="col" [mdbTableSort]="data" sortBy="day">
+              Dia
+              <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+            </th>
+            <th scope="col" [mdbTableSort]="data" sortBy="hour">
+              Hora
+              <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+            </th>
+            <th scope="col" [mdbTableSort]="data" sortBy="finalPrice">
+              Valor venta
+              <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr mdbTableCol *ngFor="let el of data">
+            <th scope="row" class="text-left lead">{{el.name}}</th>
+            <td class="text-center">{{el.persons }}</td>
+            <td class="text-center">{{el.day | date: 'dd/MM/yyyy'}}</td>
+            <td class="text-center">{{el.hour }}</td>
+            <td class="text-center">{{el.finalPrice | currency}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
