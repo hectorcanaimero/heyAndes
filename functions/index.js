@@ -1,7 +1,7 @@
 const admin = require('./node_modules/firebase-admin');
 const serviceAccount = require("./serviceAccountKey.json");
-const sales = require("./sales.json");
-
+const items = require("./sales.json");
+const slugify = require('slugify');
 
 admin.initializeApp({ credential: admin.credential.cert(serviceAccount) });
 
@@ -11,10 +11,14 @@ firestore.settings(settings);
 
 const collection = 'sales';
 
-if (sales && (typeof sales === "object")) {
-  Object.keys(sales).forEach(docKey => {
-    firestore.collection(collection).doc().set(sales[docKey])
+if (items && (typeof items === "object")) {
+
+  Object.keys(items).forEach(docKey => {
+    items[docKey].slug = slugify(items[docKey].nameAgency.toLowerCase());
+    firestore.collection(collection).doc().set(items[docKey])
     .then((res) => console.log("Document " + docKey + " successfully written!"))
     .catch((error) => console.error("Error writing document: ", error));
   })
+} else {
+  console.log('No es un object');
 }
