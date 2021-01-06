@@ -1,15 +1,41 @@
 <section id="empresas">
   <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-around">
       <div class="col-6 col-lg-5">
-        Hola
+        <app-card [title]="empresaMasVentas.nameAgency" [value]="empresaMasVentas.finalPrice"></app-card>
       </div>
       <div class="col-6 col-lg-5">
-        Ypo
+        <app-card [title]="getMonth(mesMasVentas.mes)" [value]="mesMasVentas.finalPrice"></app-card>
       </div>
-      <div class="col-md-12">
-        <table mdbTable responsive="true">
-
+      <div class="col-md-12 mt-4">
+        <table mdbTable small="true" striped="true" hover="true" *ngIf="(items | async) as data" >
+          <thead class="black white-text text-center">
+            <tr>
+              <th scope="col" [mdbTableSort]="data" sortBy="nameAgency">
+                Nombre empresa
+                <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+              </th>
+              <th scope="col" [mdbTableSort]="data" sortBy="finalPrice">
+                Total de ventas
+                <mdb-icon fas icon="sort" class="ml-1"></mdb-icon>
+              </th>
+              <th scope="col">Comision</th>
+              <th scope="col">Detalles</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr mdbTableCol *ngFor="let el of data">
+              <th scope="row" class="text-left lead">{{el.nameAgency}}</th>
+              <td class="text-right lead">{{el.finalPrice | currency }}</td>
+              <td class="text-right lead">{{el.finalPrice * 0.025 | currency}}</td>
+              <td class="text-center p-0">
+                <button type="button" size="sm" mdbBtn color="info" (click)="onLink(el.slug)" mdbWavesEffect>
+                  <mdb-icon fas icon="eye" class="mr-1"></mdb-icon>
+                  Ver Detalle
+                </button>
+              </td>
+            </tr>
+          </tbody>
         </table>
       </div>
     </div>

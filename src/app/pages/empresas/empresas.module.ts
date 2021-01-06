@@ -1,9 +1,12 @@
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+
+import { EMPRESA_ROUTE } from './empresas.routes';
 import { EmpresasComponent } from './empresas.component';
 import { DetailComponent } from './detail/detail.component';
-import { EMPRESA_ROUTE } from './empresas.routes';
+import { ComponentsModule } from './../../shared/components/components.module';
 
 
 
@@ -12,6 +15,7 @@ import { EMPRESA_ROUTE } from './empresas.routes';
   imports: [
     CommonModule,
     EMPRESA_ROUTE,
+    ComponentsModule,
     MDBBootstrapModule
   ]
 })
